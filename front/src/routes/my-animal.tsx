@@ -4,15 +4,15 @@ import {
   saleAnimalTokenAddress,
   saleAnimalTokenContract,
 } from "../contracts";
-import { Box, Button, Flex, Grid, Text } from "@chakra-ui/react";
-import AnimalCard from "../components/AnimalCard";
+import { Button, Flex, Grid, Text } from "@chakra-ui/react";
+import { MyAnimalCard, IMyAnimalCard } from "../components/MyAnimalCard";
 
 interface MyAnimalProps {
-  account?: string;
+  account: string;
 }
 
 const MyAnimal: FC<MyAnimalProps> = ({ account }) => {
-  const [animalCardArray, setAnimalCardArray] = useState<string[]>();
+  const [animalCardArray, setAnimalCardArray] = useState<IMyAnimalCard[]>();
   const [saleStatus, setSaleStatus] = useState<boolean>(false);
 
   const getAnimalTokens = async () => {
@@ -28,11 +28,18 @@ const MyAnimal: FC<MyAnimalProps> = ({ account }) => {
           mintAnimalTokenContract.methods.tokenOfOwnerByIndex as any
         )(account, i).call();
 
-        const animalType = await (
+        const animalType = `${await (
           mintAnimalTokenContract.methods.animalTypes as any
+        )(animalTokenId).call()}`;
+
+        const animalPrice = await (
+          saleAnimalTokenContract.methods.animalTokenPrices as any
         )(animalTokenId).call();
-        console.log(`${animalTokenId}: animType: ${animalType}`);
-        tempAnimalCardArray.push(`${animalType}`);
+
+        console.log(
+          `${animalTokenId}: animType: ${animalType} price = ${animalPrice}`
+        );
+        tempAnimalCardArray.push({ animalTokenId, animalType, animalPrice });
       }
 
       setAnimalCardArray(tempAnimalCardArray);
@@ -101,7 +108,16 @@ const MyAnimal: FC<MyAnimalProps> = ({ account }) => {
       <Grid templateColumns="repeat(4, 1fr)" gap="8" mt={4}>
         {animalCardArray &&
           animalCardArray.map((v, i) => {
-            return <AnimalCard key={i} animalType={v} />;
+            return (
+              <MyAnimalCard
+                key={i}
+                animalTokenId={v.animalTokenId}
+                animalType={v.animalType}
+                animalPrice={v.animalPrice}
+                saleStatus={saleStatus}
+                account={account}
+              />
+            );
           })}
       </Grid>
     </>
