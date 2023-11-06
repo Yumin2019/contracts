@@ -1,5 +1,5 @@
 import Web3 from "web3";
-// import { Contract } from 'web3-eth-contract';
+import { Contract } from "web3-eth-contract";
 // import { AbiItem } from "web3-utils";
 export const web3 = new Web3(window.ethereum);
 
@@ -545,7 +545,7 @@ const mintAmimalTokenAbi: any = [
     stateMutability: "nonpayable",
     type: "function",
   },
-];
+] as const;
 
 const saleAnimalTokenAbi: any = [
   {
@@ -654,7 +654,7 @@ const saleAnimalTokenAbi: any = [
     stateMutability: "nonpayable",
     type: "function",
   },
-];
+] as const;
 
 const mintAnimalTokenAddress = "0x62969533835cb91CA3d741878d15CC65161DE9d8";
 const saleAnimalTokenAddress = "0x33D39BC75B4809343fc045eF1282B32DA319bF53";

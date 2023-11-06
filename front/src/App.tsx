@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "./routes/main";
 
 function App() {
-  const [account, setAccount] = useState<String>("");
+  const [account, setAccount] = useState<string>("");
 
   const getAccount = async () => {
     try {
@@ -24,13 +24,13 @@ function App() {
 
   useEffect(() => {
     getAccount();
-  }, []);
+  }, [account]);
 
   return (
     <ChakraProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={<Main account={account} />} />
         </Routes>
       </BrowserRouter>
     </ChakraProvider>
