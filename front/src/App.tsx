@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
+import MyAnimal from "./routes/my-animal";
 import Main from "./routes/main";
 
 function App() {
@@ -29,9 +31,12 @@ function App() {
   return (
     <ChakraProvider>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Main account={account} />} />
-        </Routes>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Main account={account} />} />
+            <Route path="my-animal" element={<MyAnimal account={account} />} />
+          </Routes>
+        </Layout>
       </BrowserRouter>
     </ChakraProvider>
   );
