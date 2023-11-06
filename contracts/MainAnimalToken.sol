@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 
 contract MintAnimalToken is ERC721Enumerable {
     constructor() ERC721("h662Animals", "HAS") {}
-
+ 
     mapping(uint256 => uint256) public animalTypes;
 
     function mintAnimalToken() public {
