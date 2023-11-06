@@ -656,8 +656,10 @@ const saleAnimalTokenAbi: any = [
   },
 ] as const;
 
-const mintAnimalTokenAddress = "0x62969533835cb91CA3d741878d15CC65161DE9d8";
-const saleAnimalTokenAddress = "0x33D39BC75B4809343fc045eF1282B32DA319bF53";
+export const mintAnimalTokenAddress =
+  "0x62969533835cb91CA3d741878d15CC65161DE9d8";
+export const saleAnimalTokenAddress =
+  "0x33D39BC75B4809343fc045eF1282B32DA319bF53";
 
 export const mintAnimalTokenContract = new web3.eth.Contract(
   mintAmimalTokenAbi,

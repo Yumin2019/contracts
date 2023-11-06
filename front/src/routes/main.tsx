@@ -19,13 +19,15 @@ const Main: FC<MainProps> = ({ account }) => {
         .send({ from: account });
       console.log(response);
       if (Number(response.status) === 1) {
-        const balanceLength = await (
-          mintAnimalTokenContract.methods.balanceOf as any
-        )(account).call();
+        const balanceLength = Number(
+          await (mintAnimalTokenContract.methods.balanceOf as any)(
+            account
+          ).call()
+        );
 
         const animalTokenId = await (
           mintAnimalTokenContract.methods.tokenOfOwnerByIndex as any
-        )(account, Number(balanceLength) - 1).call();
+        )(account, balanceLength - 1).call();
 
         const animalType = await (
           mintAnimalTokenContract.methods.animalTypes as any
