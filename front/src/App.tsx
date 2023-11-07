@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import MyAnimal from "./routes/my-animal";
 import Main from "./routes/main";
+import SaleAnimal from "./routes/sale-animal";
 
 function App() {
   const [account, setAccount] = useState<string>("");
@@ -35,6 +36,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Main account={account} />} />
             <Route path="my-animal" element={<MyAnimal account={account} />} />
+            <Route
+              path="sale-animal"
+              element={<SaleAnimal account={account} />}
+            />
           </Routes>
         </Layout>
       </BrowserRouter>
