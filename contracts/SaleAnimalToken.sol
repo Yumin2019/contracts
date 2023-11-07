@@ -1,15 +1,15 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.20;
 
-import "MainAnimalToken.sol";
+import "contracts/MainAnimalToken.sol";
 
 contract SaleAnimalToken {
     MintAnimalToken public mintAnimalTokenAddress;
-    mapping(uint256 => uint256) public animalTokenPrices;
+    mapping(uint256 => uint256) public animalTokenPrices; 
     uint256[] public onSaleAnimalTokenArray;
 
-    constructor(address _mintAnimalTokenAddress) {
+    constructor(address _mintAnimalTokenAddress) { 
         mintAnimalTokenAddress = MintAnimalToken(_mintAnimalTokenAddress);
     }
 
@@ -49,5 +49,9 @@ contract SaleAnimalToken {
  
     function getOnSaleAnimalTokenArrayLength() view public returns (uint256) {
         return onSaleAnimalTokenArray.length;
+    }
+    
+    function getAnimalTokenPrice(uint256 _animalTokenId) view public returns (uint256) {
+        return animalTokenPrices[_animalTokenId];
     }
 }
